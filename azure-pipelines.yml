@@ -19,6 +19,10 @@ steps:
     testResultsFormat: 'JUnit'
     testResultsFiles: '**/test-results.xml'
 - script: |
+    npm install
+    npm run nyc
+    npm run build
+- script: |
     nyc --reporter=cobertura --reporter=html \
     npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results.xml
   displayName: 'Build code coverage report'
@@ -27,8 +31,4 @@ steps:
     codeCoverageTool: 'Cobertura'
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
-- script: |
-    npm install
-    npm run nyc
-    npm run build
   displayName: 'npm install and build'
