@@ -29,6 +29,6 @@ steps:
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
 - script: |
     npm install
+    npm run nyc
     npm run build
-    yarn global add nyc
   displayName: 'npm install and build'
